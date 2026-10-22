@@ -1,0 +1,35 @@
+{
+  "metadataAttributes": {
+    "title": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "8 CFR 214.2(f) \u00e2\u20ac\u201d OPT/STEM OPT Unemployment Limits"
+      },
+      "includeForEmbedding": true
+    },
+    "sourceUrl": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-214/section-214.2"
+      },
+      "includeForEmbedding": false
+    },
+    "documentType": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "final_rule"
+      },
+      "includeForEmbedding": true
+    },
+    "visaTypeTags": {
+      "value": {
+        "type": "STRING_LIST",
+        "stringListValue": [
+          "OPT",
+          "STEM_OPT"
+        ]
+      },
+      "includeForEmbedding": true
+    }
+  }
+}

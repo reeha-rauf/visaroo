@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Fetch & Summarize Immigration News",
+      "trigger": "SessionStart",
+      "description": "On session start, refresh the Visaroo news feed: pull the latest immigration items from the Federal Register API and curated RSS feeds, then AI-summarize and classify each by visa category. This is the local/dev counterpart to the production EventBridge->Lambda schedule.",
+      "action": {
+        "type": "command",
+        "command": "python scripts/fetch_news.py"
+      }
+    }
+  ]
+}

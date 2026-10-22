@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Backend tests on save",
+      "trigger": "PostFileSave",
+      "matcher": "backend[\\\\/].*\\.py$",
+      "description": "When any backend Python file is saved, run the hermetic test suite with the local AI provider so regressions in auth, anonymity, voting, gatekeeper, or search grounding are caught immediately.",
+      "action": {
+        "type": "command",
+        "command": "cd backend && .venv/Scripts/python -m pytest -q"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "metadataAttributes": {
+    "title": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "USCIS \u00e2\u20ac\u201d Optional Practical Training (OPT) Overview"
+      },
+      "includeForEmbedding": true
+    },
+    "sourceUrl": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students"
+      },
+      "includeForEmbedding": false
+    },
+    "documentType": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "guidance"
+      },
+      "includeForEmbedding": true
+    },
+    "visaTypeTags": {
+      "value": {
+        "type": "STRING_LIST",
+        "stringListValue": [
+          "F-1",
+          "OPT"
+        ]
+      },
+      "includeForEmbedding": true
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "ServiceName": "visaroo-backend",
+  "SourceConfiguration": {
+    "AuthenticationConfiguration": {
+      "AccessRoleArn": "arn:aws:iam::782989862515:role/VisarooAppRunnerAccessRole"
+    },
+    "AutoDeploymentsEnabled": false,
+    "ImageRepository": {
+      "ImageIdentifier": "782989862515.dkr.ecr.us-east-2.amazonaws.com/visaroo-backend:latest",
+      "ImageRepositoryType": "ECR",
+      "ImageConfiguration": {
+        "Port": "8080",
+        "RuntimeEnvironmentVariables": {
+          "AI_PROVIDER": "bedrock",
+          "AWS_REGION": "us-east-2",
+          "BEDROCK_TEXT_MODEL_ID": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
+          "BEDROCK_EMBED_MODEL_ID": "amazon.titan-embed-text-v2:0",
+          "CRYPTO_PROVIDER": "kms",
+          "KMS_KEY_ID": "alias/visaroo-profiles",
+          "EMAIL_PROVIDER": "ses",
+          "SES_FROM_EMAIL": "reeyarauf@gmail.com",
+          "SECRET_KEY": "prod-visaroo-please-rotate-this-secret",
+          "FRONTEND_ORIGIN": "*"
+        }
+      }
+    }
+  },
+  "InstanceConfiguration": {
+    "Cpu": "1024",
+    "Memory": "2048",
+    "InstanceRoleArn": "arn:aws:iam::782989862515:role/VisarooAppRunnerInstanceRole"
+  },
+  "HealthCheckConfiguration": {
+    "Protocol": "HTTP",
+    "Path": "/healthz",
+    "Interval": 10,
+    "Timeout": 5,
+    "HealthyThreshold": 1,
+    "UnhealthyThreshold": 5
+  }
+}

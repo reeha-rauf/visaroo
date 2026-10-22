@@ -1,0 +1,14 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Send Deadline Reminders",
+      "trigger": "SessionStart",
+      "description": "Runs the deadline reminder checker: for each user with email alerts on, send a reminder when a deadline hits one of their lead-time thresholds (90/60/30/14/7 days). Idempotent per threshold via the reminders_sent table. Local counterpart to the production EventBridge->Lambda daily schedule.",
+      "action": {
+        "type": "command",
+        "command": "python scripts/send_reminders.py"
+      }
+    }
+  ]
+}

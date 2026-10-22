@@ -1,0 +1,35 @@
+{
+  "metadataAttributes": {
+    "title": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "USCIS \u00e2\u20ac\u201d STEM OPT Extension"
+      },
+      "includeForEmbedding": true
+    },
+    "sourceUrl": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/students-and-employment/stem-opt"
+      },
+      "includeForEmbedding": false
+    },
+    "documentType": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "guidance"
+      },
+      "includeForEmbedding": true
+    },
+    "visaTypeTags": {
+      "value": {
+        "type": "STRING_LIST",
+        "stringListValue": [
+          "OPT",
+          "STEM_OPT"
+        ]
+      },
+      "includeForEmbedding": true
+    }
+  }
+}

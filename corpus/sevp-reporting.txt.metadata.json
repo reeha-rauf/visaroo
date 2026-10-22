@@ -1,0 +1,36 @@
+{
+  "metadataAttributes": {
+    "title": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "SEVP \u00e2\u20ac\u201d Reporting Requirements for OPT/STEM OPT"
+      },
+      "includeForEmbedding": true
+    },
+    "sourceUrl": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "https://studyinthestates.dhs.gov/students/maintaining-status"
+      },
+      "includeForEmbedding": false
+    },
+    "documentType": {
+      "value": {
+        "type": "STRING",
+        "stringValue": "guidance"
+      },
+      "includeForEmbedding": true
+    },
+    "visaTypeTags": {
+      "value": {
+        "type": "STRING_LIST",
+        "stringListValue": [
+          "F-1",
+          "OPT",
+          "STEM_OPT"
+        ]
+      },
+      "includeForEmbedding": true
+    }
+  }
+}

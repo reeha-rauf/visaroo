@@ -1,0 +1,38 @@
+{
+  "opt-overview.txt": {
+    "title": "USCIS — Optional Practical Training (OPT) Overview",
+    "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students",
+    "documentType": "guidance",
+    "visaTypeTags": ["F-1", "OPT"]
+  },
+  "stem-opt-extension.txt": {
+    "title": "USCIS — STEM OPT Extension",
+    "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/students-and-employment/stem-opt",
+    "documentType": "guidance",
+    "visaTypeTags": ["OPT", "STEM_OPT"]
+  },
+  "opt-unemployment-rule.txt": {
+    "title": "8 CFR 214.2(f) — OPT/STEM OPT Unemployment Limits",
+    "sourceUrl": "https://www.ecfr.gov/current/title-8/chapter-I/subchapter-B/part-214/section-214.2",
+    "documentType": "final_rule",
+    "visaTypeTags": ["OPT", "STEM_OPT"]
+  },
+  "sevp-reporting.txt": {
+    "title": "SEVP — Reporting Requirements for OPT/STEM OPT",
+    "sourceUrl": "https://studyinthestates.dhs.gov/students/maintaining-status",
+    "documentType": "guidance",
+    "visaTypeTags": ["F-1", "OPT", "STEM_OPT"]
+  },
+  "h1b-overview.txt": {
+    "title": "USCIS — H-1B Specialty Occupations Overview",
+    "sourceUrl": "https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
+    "documentType": "guidance",
+    "visaTypeTags": ["H-1B"]
+  },
+  "f1-grace-period.txt": {
+    "title": "USCIS/SEVP — F-1 Grace Periods and Maintaining Status",
+    "sourceUrl": "https://studyinthestates.dhs.gov/students/maintaining-status",
+    "documentType": "guidance",
+    "visaTypeTags": ["F-1", "OPT", "STEM_OPT"]
+  }
+}

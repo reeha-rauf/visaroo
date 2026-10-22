@@ -1,0 +1,11 @@
+**/.venv
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+backend/visaroo.db
+visaroo.db
+frontend/node_modules
+frontend/dist
+.git
+.kiro
+**/.env

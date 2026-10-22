@@ -1,0 +1,24 @@
+# ---- Visaroo .gitignore ----
+# NOTE: .kiro/ is intentionally NOT ignored. It is required for hackathon judging
+# and must stay tracked (specs, steering, hooks).
+
+# Python
+backend/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.db
+
+# Environment
+.env
+backend/.env
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+# Internal prep doc (not part of the public submission)
+DEMO_SCRIPT.md

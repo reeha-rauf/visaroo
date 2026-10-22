@@ -1,0 +1,15 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Responsible-AI review on AI code changes",
+      "trigger": "PostFileSave",
+      "matcher": "backend[\\\\/]app[\\\\/]ai[\\\\/].*\\.py$",
+      "description": "When any AI provider code changes, remind the agent to re-check it against the responsible-AI steering rules (no legal advice, always ground/cite, soft-warn not hard-block, graceful Bedrock fallback).",
+      "action": {
+        "type": "agent",
+        "prompt": "An AI provider file under backend/app/ai/ was just changed. Review the change against .kiro/steering/responsible-ai.md: confirm it does not give legal advice, that search summaries stay grounded only in retrieved community posts, that the gatekeeper remains soft-warn (never hard-block), and that any Bedrock path degrades gracefully to the local provider. Flag any violation."
+      }
+    }
+  ]
+}
