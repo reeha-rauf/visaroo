@@ -37,9 +37,6 @@ grounded and a responsible-AI posture throughout (never legal advice, always cit
 10. **Community profile & legal help:** a "My Posts" view of your questions/answers, plus a
     client-side **case-brief generator** and a curated attorney/legal-aid directory.
 
-**Live:** frontend https://d3a97o58gvqmqx.cloudfront.net · API
-https://3gixvis6vu.us-east-2.awsapprunner.com (see [Live deployment](#live-deployment-aws-us-east-2)).
-**Demo video:** _[add your YouTube/Vimeo link here]_.
 
 **Why this matters & who adopts it.** There are roughly **1.1 million international students**
 in the US (IIE Open Doors) plus hundreds of thousands more on H-1B/H-4/J-1 and in green-card

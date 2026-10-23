@@ -65,7 +65,13 @@ def _parse_date(value: str | None) -> datetime | None:
 
 
 def fetch_federal_register(per_term: int = 10) -> list[RawItem]:
-    """Fetch recent immigration-related documents from the Federal Register API."""
+    """Fetch recent immigration documents from the Federal Register API.
+
+    Scoped to the agencies that actually publish student/worker-visa rules (USCIS, ICE,
+    DHS, State) AND matched on a visa-specific term. Agency scoping is what keeps
+    unrelated rulemaking (securities, energy, health) out of the feed — a plain full-text
+    term search returns any document that merely mentions a word like "employment".
+    """
     items: list[RawItem] = []
     with httpx.Client(timeout=HTTP_TIMEOUT) as client:
         for term in FEDERAL_REGISTER_TERMS:
@@ -76,24 +82,38 @@ def fetch_federal_register(per_term: int = 10) -> list[RawItem]:
                         "per_page": per_term,
                         "order": "newest",
                         "conditions[term]": term,
+                        # Restrict to immigration-relevant agencies.
+                        "conditions[agencies][]": [
+                            "u-s-citizenship-and-immigration-services",
+                            "u-s-immigration-and-customs-enforcement",
+                            "homeland-security-department",
+                            "state-department",
+                        ],
                         "fields[]": [
                             "title",
                             "abstract",
                             "html_url",
                             "document_number",
                             "publication_date",
+                            "agencies",
                         ],
                     },
                 )
                 resp.raise_for_status()
                 for doc in resp.json().get("results", []):
+                    # Fold agency names into the content so the classifier's immigration
+                    # signal (e.g. "homeland security") is reliably present.
+                    agency_names = " ".join(
+                        a.get("name", "") for a in (doc.get("agencies") or [])
+                    )
+                    abstract = doc.get("abstract") or doc.get("title", "")
                     items.append(
                         RawItem(
                             source="federal_register",
                             source_id=f"fr:{doc.get('document_number')}",
                             title=doc.get("title", "Untitled"),
                             url=doc.get("html_url", ""),
-                            content=doc.get("abstract") or doc.get("title", ""),
+                            content=f"{abstract} {agency_names}".strip(),
                             published_at=_parse_date(doc.get("publication_date")),
                         )
                     )

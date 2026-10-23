@@ -12,10 +12,13 @@ layer keeps the community relevant, safe, and searchable.
 
 Built for the AWS "Within Reach Kiro Hackathon 2026" hackathon.
 
+**🎥 Demo video:** https://youtu.be/JekyxTTxkSU
+
+**📄 Technical write-up:** [TECHNICAL_WRITEUP.md](TECHNICAL_WRITEUP.md)
+
 ---
 
-## Table of contents
-- [Why Visaroo](#why-visaroo)
+## Table of contents-visaroo)
 - [Features](#features)
 - [Quick start](#quick-start)
 - [Live deployment (AWS)](#live-deployment-aws-us-east-2)
@@ -236,20 +239,20 @@ demos:
 │  (TypeScript)   │  ◀──────────────────  │        routers → services        │
 └─────────────────┘                       │                                  │
                                           │  ┌────────────────────────────┐  │
-                                          │  │  AIProvider interface       │  │
-                                          │  │  ├ LocalProvider (default)  │  │
-                                          │  │  └ BedrockProvider ─────────┼──┼──▶ Amazon Bedrock
+                                          │  │  AIProvider interface      │  │
+                                          │  │  ├ LocalProvider (default) │  │
+                                          │  │  └ BedrockProvider ────────┼──┼──▶ Amazon Bedrock
                                           │  ├────────────────────────────┤  │     (Claude + Titan)
-                                          │  │  CryptoProvider interface   │  │
-                                          │  │  ├ LocalProvider (Fernet)   │  │
-                                          │  │  └ KmsProvider ─────────────┼──┼──▶ AWS KMS
+                                          │  │  CryptoProvider interface  │  │
+                                          │  │  ├ LocalProvider (Fernet)  │  │
+                                          │  │  └ KmsProvider ────────────┼──┼──▶ AWS KMS
                                           │  ├────────────────────────────┤  │     (encrypt at rest)
-                                          │  │  EmailProvider interface    │  │
-                                          │  │  ├ LocalProvider (preview)  │  │
-                                          │  │  └ SesProvider ─────────────┼──┼──▶ Amazon SES
+                                          │  │  EmailProvider interface   │  │
+                                          │  │  ├ LocalProvider (preview) │  │
+                                          │  │  └ SesProvider ────────────┼──┼──▶ Amazon SES
                                           │  └────────────────────────────┘  │     (reminder email)
                                           │                                  │
-                                          │  SQLAlchemy ──▶ SQLite / Postgres │
+                                          │ SQLAlchemy ──▶SQLite / Postgres  │
                                           └──────────────────────────────────┘
                                                           ▲
                         news ingest  (scripts/fetch_news.py · Kiro hook / scheduled job)

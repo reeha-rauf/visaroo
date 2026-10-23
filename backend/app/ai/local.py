@@ -27,19 +27,43 @@ _DOMAIN_TERMS = {
     "international student", "international", "sponsorship", "lottery",
 }
 
+# Category keywords matched as whole words/phrases (see _classify). These are specific
+# enough that a match is a strong signal for that visa category. Over-generic terms
+# ("opt", "cap", "status", "employment", "travel") are deliberately excluded because they
+# match unrelated Federal Register documents as substrings and mis-tag them.
 _CATEGORY_KEYWORDS = {
-    "STEM-OPT": ["stem", "i-983", "24 month", "24-month", "e-verify"],
-    "OPT": ["opt", "ead", "unemployment", "i-765", "90 day", "90-day"],
-    "F-1": ["f-1", "f1", "i-20", "cpt", "sevis", "full-time student"],
-    "H-1B": ["h-1b", "h1b", "lottery", "cap", "lca", "specialty occupation"],
-    "H-4": ["h-4", "h4", "dependent", "h4 ead"],
-    "J-1": ["j-1", "j1", "exchange", "ds-2019", "212(e)", "home residency"],
-    "L-1": ["l-1", "l1", "intracompany", "blanket l"],
+    "STEM-OPT": ["stem opt", "i-983", "24-month extension", "stem extension"],
+    "OPT": [
+        "optional practical training", "opt employment", "ead", "i-765",
+        "unemployment days", "post-completion opt", "pre-completion opt",
+    ],
+    "F-1": ["f-1 student", "f-1 visa", "i-20", "sevis", "sevp", "cpt",
+            "curricular practical training", "student and exchange visitor"],
+    "H-1B": ["h-1b", "h1b", "specialty occupation", "h-1b cap", "lca",
+             "labor condition application"],
+    "H-4": ["h-4", "h4 ead", "h-4 dependent"],
+    "J-1": ["j-1 exchange", "exchange visitor", "ds-2019", "212(e)",
+            "home residency requirement"],
+    "L-1": ["l-1 visa", "intracompany transferee", "blanket l"],
     "Green-Card": [
-        "green card", "i-140", "i-485", "priority date", "visa bulletin",
-        "perm", "adjustment of status", "eb-1", "eb-2", "eb-3",
+        "green card", "i-140", "i-485", "visa bulletin", "priority date",
+        "adjustment of status", "perm labor", "eb-1", "eb-2", "eb-3",
+        "permanent resident",
     ],
 }
+
+# A document is only classified into a visa category if it shows a genuine immigration
+# signal. Without this, unrelated Federal Register rules (securities, energy, health) that
+# happen to contain a stray keyword get mis-tagged and pollute the feed.
+_IMMIGRATION_SIGNALS = [
+    "visa", "immigration", "immigrant", "nonimmigrant", "uscis", "sevis", "sevp",
+    "optional practical training", "practical training", "f-1", "h-1b", "h1b",
+    "j-1", "l-1", "h-4", "green card", "permanent resident", "ead",
+    "employment authorization document", "i-765", "i-983", "i-20", "i-140", "i-485",
+    "student and exchange visitor", "exchange visitor", "adjustment of status",
+    "naturalization", "asylum", "dhs", "department of homeland security",
+    "citizenship and immigration",
+]
 
 # Terms that suggest the post may be encouraging fraud / illegal activity.
 _HARM_TERMS = [
@@ -86,10 +110,20 @@ class LocalProvider:
             harmful=harmful,
         )
 
+    @staticmethod
+    def _has_signal(text: str, needle: str) -> bool:
+        """Whole-word/phrase containment so short keys ('ead', 'opt', 'l-1') don't match
+        inside unrelated words ('adopt', 'lead', 'capitol')."""
+        return re.search(r"(?<![a-z0-9])" + re.escape(needle) + r"(?![a-z0-9])", text) is not None
+
     def _classify(self, text: str) -> str:
+        # Only tag a visa category when the text is genuinely about immigration; otherwise
+        # unrelated Federal Register rules get mis-tagged and pollute the feed.
+        if not any(self._has_signal(text, s) for s in _IMMIGRATION_SIGNALS):
+            return "Other"
         best, best_score = "Other", 0
         for category, keywords in _CATEGORY_KEYWORDS.items():
-            score = sum(1 for kw in keywords if kw in text)
+            score = sum(1 for kw in keywords if self._has_signal(text, kw))
             if score > best_score:
                 best, best_score = category, score
         return best
